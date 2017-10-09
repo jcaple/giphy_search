@@ -5,7 +5,6 @@ const CONFIG = require('./lib/config');
 let express = require('express');
 let path = require('path');
 let logger = require('morgan');
-//let _ = require('lodash');
 let app = express();
 let env = CONFIG.env; 
 
