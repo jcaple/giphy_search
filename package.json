@@ -1,0 +1,32 @@
+{
+  "name": "giphy_search",
+  "version": "0.0.1",
+  "description": "A nodejs app to use the Giphy API for fun and profit",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcaple/giphy_search.git"
+  },
+  "keywords": [
+    "giphy",
+    "nodejs",
+    "vue",
+    "express",
+    "image",
+    "search"
+  ],
+  "author": "James Caple",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcaple/giphy_search/issues"
+  },
+  "homepage": "https://github.com/jcaple/giphy_search#readme",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "featherjs": "^0.1.0",
+    "mocha": "^4.0.1"
+  }
+}
