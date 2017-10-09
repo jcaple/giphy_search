@@ -1,1 +1,3 @@
-# giphy_search
+# GIPHY Search
+
+TODO: Documentation
