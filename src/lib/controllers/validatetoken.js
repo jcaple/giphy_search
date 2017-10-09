@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const ValidateToken = function(req, res, next) {
 
 	const token = req.headers['x-access-token'];
+	const cookie = req.cookies;
 
 	if (token) {
 	    try {

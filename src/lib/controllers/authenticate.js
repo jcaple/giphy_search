@@ -15,19 +15,17 @@ const authenticateUserCredentials = function(req, res, next) {
 	user.email = req.body.email;
 	user.password = req.body.password;
 
-	process.stdout.write('Authenticate User: ' + JSON.stringify(user));
-
 	let token = jwt.sign(user, CONFIG.secret, {
 		expiresIn: 28800 
 	});
 
-	// return the information including token as JSON
-	res.json({
-		success: true,
-		message: 'Your token is valid for 8 hours',
-		token: token
-	});
+	// Set cookie containing authentication token
+	res.writeHead(200, {
+    	'Set-Cookie': 'jcaple007-giphy_search=' + token + ';Path=/;Max-Age=3600',
+    	'Content-Type': 'text/plain'
+  	});
 
+  	res.end();
 };
 
 module.exports = authenticateUserCredentials;

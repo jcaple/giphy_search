@@ -3,6 +3,7 @@
 const CONFIG = require('./lib/config');
 
 let bodyParser = require('body-parser');
+let cookieParser = require('cookie-parser')
 let express = require('express');
 let logger = require('morgan');
 let path = require('path');
@@ -10,6 +11,7 @@ let routes = require('./lib/routes/routes');
 let app = express();
 let validatetoken = require('./lib/controllers/validatetoken');
 
+app.use(cookieParser());
 app.use(logger('combined'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

@@ -27,6 +27,7 @@
   "homepage": "https://github.com/jcaple/giphy_search#readme",
   "dependencies": {
     "chai": "^4.1.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.1",
     "featherjs": "^0.1.0",
     "jsonwebtoken": "^8.0.1",
