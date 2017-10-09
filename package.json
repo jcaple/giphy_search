@@ -4,7 +4,8 @@
   "description": "A nodejs app to use the Giphy API for fun and profit",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon --watch src src/server.js"
+    "start": "nodemon --watch src src/server.js",
+    "test": "nyc --reporter=html --reporter=text mocha --sort"
   },
   "repository": {
     "type": "git",
@@ -28,9 +29,12 @@
     "chai": "^4.1.2",
     "express": "^4.16.1",
     "featherjs": "^0.1.0",
+    "jsonwebtoken": "^8.0.1",
     "mocha": "^4.0.1",
     "morgan": "^1.9.0",
     "nodemon": "^1.12.1",
+    "nyc": "^11.2.1",
+    "supertest": "^3.0.0",
     "watch": "^1.0.2"
   }
 }

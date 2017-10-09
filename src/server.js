@@ -2,13 +2,18 @@
 
 const CONFIG = require('./lib/config');
 
+let bodyParser = require('body-parser');
 let express = require('express');
-let path = require('path');
 let logger = require('morgan');
+let path = require('path');
+let routes = require('./lib/routes/routes');
 let app = express();
-let env = CONFIG.env; 
 
-//app.use(logger(env));
+app.use(logger('combined'))
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
 app.use(express.static(path.join(__dirname, 'htdocs')));
 
 // CORS Support
@@ -24,6 +29,10 @@ app.use(function (req, res, next) {
 		next();
 	}
 });
+
+console.log("GIPHY API KEY: " + CONFIG.getGiphyAPIKey());
+
+app.use(CONFIG.apiroot, routes);
 
 let server = app.listen(CONFIG.port, function() {
 	var port = server.address().port;
