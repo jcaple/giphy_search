@@ -4,7 +4,7 @@
   "description": "A nodejs app to use the Giphy API for fun and profit",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon --watch src src/server.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,9 @@
   "dependencies": {
     "chai": "^4.1.2",
     "featherjs": "^0.1.0",
-    "mocha": "^4.0.1"
+    "mocha": "^4.0.1",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.12.1",
+    "watch": "^1.0.2"
   }
 }
