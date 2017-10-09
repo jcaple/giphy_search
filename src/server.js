@@ -8,13 +8,13 @@ let logger = require('morgan');
 let path = require('path');
 let routes = require('./lib/routes/routes');
 let app = express();
+let validatetoken = require('./lib/controllers/validatetoken');
 
 app.use(logger('combined'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
-app.use(express.static(path.join(__dirname, 'htdocs')));
 
 // CORS Support
 app.use(function (req, res, next) {
@@ -30,9 +30,12 @@ app.use(function (req, res, next) {
 	}
 });
 
-console.log("GIPHY API KEY: " + CONFIG.getGiphyAPIKey());
-
+// Specify server root
 app.use(CONFIG.apiroot, routes);
+
+// Security Wrapper to for all incoming requests
+app.all('/', validatetoken);
+app.use(express.static(path.join(__dirname, 'htdocs')));
 
 let server = app.listen(CONFIG.port, function() {
 	var port = server.address().port;
