@@ -12,6 +12,8 @@
   		crossorigin="anonymous"
   	>
 
+    <link rel="stylesheet" href="css/styles.css">
+
     <!-- JQuery -->
     <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -30,10 +32,50 @@
 
 </head>
 <body>
-	<h1>James Caple's Giphy Search Tool</h1>
-	<div id="app">
-	  <p>{{ message }}</p>
-	</div>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+          data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">JC's Giphy Search Tool</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <div class="container login_width">
+    <form class="form-search" id="searchForm">
+      <center><h4 class="form-signin-heading">Enter A Giphy Search Phrase:</h4></center>
+      <input type="text" v-model="searchPhrase" id="inputSearch" class="form-control" 
+        placeholder="birthday ballons and cake" required autofocus>
+      <button type="button" class="btn btn-lg btn-primary btn-block" v-on:click="btnSearchClick">Search
+      </button>
+    </form>
+
+    <div id="searchResults">
+      {{ results }}
+      <div v-for="item of items">
+        <div class="resultContainer">
+          <img class="img-result" v-bind:src="item.img" v-bin:alt="item.alt">
+        </div>  
+      </div>
+    </div>
+
+  </div>
 
   <script src="js/frontend.js"></script>
 </body>
