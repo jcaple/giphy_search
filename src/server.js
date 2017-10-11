@@ -3,7 +3,8 @@
 const CONFIG = require('./lib/config');
 
 let bodyParser = require('body-parser');
-let cookieParser = require('cookie-parser')
+let cookieParser = require('cookie-parser');
+let nocache = require('nocache');
 let express = require('express');
 let logger = require('morgan');
 let path = require('path');
@@ -11,6 +12,7 @@ let routes = require('./lib/routes/routes');
 let app = express();
 let validatetoken = require('./lib/controllers/validatetoken');
 
+app.use(nocache());
 app.use(cookieParser());
 app.use(logger('combined'))
 app.use(bodyParser.json());
@@ -19,25 +21,43 @@ app.use(bodyParser.urlencoded({
 }));
 
 // CORS Support
-app.use(function (req, res, next) {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-	res.header('Access-Control-Allow-Headers', 'Content-Type, x-access-token');
+// app.use(function (req, res, next) {
+// 	res.header('Access-Control-Allow-Origin', '*');
+// 	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+// 	res.header('Access-Control-Allow-Headers', 'Content-Type, x-access-token');
 
-	if (req.method === 'OPTIONS') {
-		res.writeHead(200, res.headers);
-		res.end();
-	} else {
-		next();
-	}
-});
+// 	if (req.method === 'OPTIONS') {
+// 		res.writeHead(200, res.headers);
+// 		res.end();
+// 	} else {
+// 		next();
+// 	}
+// });
 
 // Specify server root
 app.use(CONFIG.apiroot, routes);
 
+let unless = function(path, middleware) {
+    return function(req, res, next) {
+    	console.log('\nPATH: ' + path);
+    	console.log('\nreq.path: '+ req.path);
+        if (req.path === '/login.html' || req.path === '/css/styles.css' 
+        		|| req.path === '/js/login.js') {
+            return next();
+        } else {
+            return middleware(req, res, next);
+        }
+    };
+};
+
 // Security Wrapper to for all incoming requests
-app.all('/', validatetoken);
-app.use(express.static(path.join(__dirname, 'htdocs')));
+app.use(unless('/*', validatetoken));
+
+app.use(express.static(path.join(__dirname, 'htdocs'), {index: 'index.html'}));
+
+app.use(function(req, res){
+    res.sendStatus(404);
+});
 
 let server = app.listen(CONFIG.port, function() {
 	var port = server.address().port;

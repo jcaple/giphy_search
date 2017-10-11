@@ -1,7 +1,8 @@
 'use strict';
 
-const jwt = require('jsonwebtoken');
 const CONFIG = require('../config');
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 
 // This Controller authenticates a user based on provided email and password.
 // If authenticated, a JSON Web Token is issued to the client.
@@ -19,11 +20,14 @@ const authenticateUserCredentials = function(req, res, next) {
 		expiresIn: 28800 
 	});
 
+	console.log('\nSending cookie!');
+	
 	// Set cookie containing authentication token
 	res.writeHead(200, {
+		// Cookie ttl = 1hr
     	'Set-Cookie': 'jcaple007-giphy_search=' + token + ';Path=/;Max-Age=3600',
-    	'Content-Type': 'text/plain'
-  	});
+     	'Content-Type': 'text/plain'
+   	});
 
   	res.end();
 };

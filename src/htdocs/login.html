@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"   
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+      crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- JQuery -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+
+    <!-- Bootstrap 3.3.7 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+      crossorigin="anonymous">
+    </script>
+
+    <script src="https://unpkg.com/vue"></script>
+
+  </head>
+
+  <body>
+
+    <center>
+      <h3>JC's Giphy Search Tool</h3>
+    </center>
+
+    <div class="container login_width">
+
+      <form class="form-signin" id="loginForm">
+        <center><h4 class="form-signin-heading">Please Log In</h4></center>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" v-model="email" id="inputEmail" class="form-control" 
+          placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" v-model="password" id="inputPassword" class="form-control" 
+          placeholder="Password" required>
+
+        <button class="btn btn-lg btn-primary btn-block" v-on:click="btnLoginClick">Log In
+        </button>
+
+      </form>
+
+    </div> <!-- /container -->
+         
+    <script src="js/login.js"></script>
+  </body>
+</html>
