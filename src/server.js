@@ -20,20 +20,6 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
-// CORS Support
-// app.use(function (req, res, next) {
-// 	res.header('Access-Control-Allow-Origin', '*');
-// 	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-// 	res.header('Access-Control-Allow-Headers', 'Content-Type, x-access-token');
-
-// 	if (req.method === 'OPTIONS') {
-// 		res.writeHead(200, res.headers);
-// 		res.end();
-// 	} else {
-// 		next();
-// 	}
-// });
-
 // Specify server root
 app.use(CONFIG.apiroot, routes);
 
