@@ -18,7 +18,7 @@ Testing on Firefox 40.15063.0.0 revealed many display discrepancies not encounte
 ### Run From Source
 
 1.  Clone the repository
-2.  Run npm start
+2.  npm run start
 3.  Using Google Chrome (or IE Edge) navigate to http://localhost:8000
 4.  Enter any email address/password combination
 
