@@ -4,6 +4,13 @@
   	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:url" content="" />
+    <meta property="og:type" content="giphy" />
+    <meta property="og:title" content="JC's Giphy Search Tool" />
+    <meta property="og:description" content="Easy Giphy Search Tool" />
+    <meta property="og:image" content="" />
+
   	<title>James Caple's Giphy Search Tool</title>
   	
   	<link 
@@ -27,7 +34,27 @@
       crossorigin="anonymous">
     </script>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- Facebook SDK -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '360349651081519',
+          xfbml      : true,
+          version    : 'v2.10'
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <!-- Vue.js -->
     <script src="https://unpkg.com/vue"></script>
 
 </head>
@@ -50,32 +77,92 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Help</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a href="javascript:$('#helpModal').modal('show');">Help</a></li>
+          <li><a href="javascript:$('#aboutModal').modal('show');">About</a></li>
+          <li><a href="javascript:logout();">Logout</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
 
   <div class="container login_width">
-    <form class="form-search" id="searchForm">
+    <form class="form-search" id="searchForm" v-on:submit.prevent="onSubmit">
       <center><h4 class="form-signin-heading">Enter A Giphy Search Phrase:</h4></center>
-      <input type="text" v-model="searchPhrase" id="inputSearch" class="form-control" 
-        placeholder="birthday ballons and cake" required autofocus>
-      <button type="button" class="btn btn-lg btn-primary btn-block" v-on:click="btnSearchClick">Search
+      <input type="text" v-model="searchPhrase" v-on:keyup.enter="btnSearchClick"
+        id="inputSearch" class="form-control" 
+        placeholder="birthday balloons, cake and unicorns" required autofocus>
+      <button type="button" class="btn btn-lg btn-primary btn-block" 
+        v-on:click="btnSearchClick">
+        Search
       </button>
     </form>
+  </div>
 
+  <div class="container">
     <div id="searchResults">
       {{ results }}
       <div v-for="item of items">
         <div class="resultContainer">
-          <img class="img-result" v-bind:src="item.img" v-bin:alt="item.alt">
+          <img class="img-result" v-bind:src="item.img" v-bind:alt="item.alt">
+          
+          <!--
+          <span align="center" class="embed-input" type="text" size="50" 
+            v-model="item.embed"/>
+          <br/>
+          -->
+          
+          <iframe class="fbShare" v-bind:src="item.share" width="59" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true">
+          </iframe>
         </div>  
       </div>
     </div>
 
   </div>
+
+  <!-- Modal Dialogs -->
+
+  <div class="modal fade" id="helpModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title"><b>Help</b></h2>
+        </div>
+        <div class="modal-body">
+          <p>
+          This tool provides a simple interface for quickly searching giphy.com and sharing giphy results on your Facebook Page.  It's not 'rocket science.'  Input a search
+          phrase or word and hit Enter or click the 'Search' button.  I challenge you not to 
+          crack a smile!
+          </p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" title="Close">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="aboutModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title"><b>About</b></h2>
+        </div>
+        <div class="modal-body">
+          <p>
+            This tool was developed by James Caple, Copyright (C) 2017, All rights reserved.
+            The code for the website is public available on GitHub at:
+
+            <a href="https://github.com/jcaple/giphy_search" target=_new title="Giphy Search Tool">JC's Giphy Search Tool</a>
+          </p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" title="Close">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 
   <script src="js/frontend.js"></script>
 </body>

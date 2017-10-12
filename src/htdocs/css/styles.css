@@ -16,10 +16,21 @@
 
 .img-result {
 	padding: 7x;
+	padding-bottom: 3px;
 	text-align: center;
+	display: block;
+    margin-left: auto;
+    margin-right: auto
 }
 
 .resultContainer {
-	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.embed-input {
+	text-aling: center;
+}
+.fbShare {
+	//padding-top: 5px;
 }
