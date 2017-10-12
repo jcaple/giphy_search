@@ -1,4 +1,4 @@
-# GIPHY Search
+# JC's Giphy Search Tool
 
 ## Project Description
 
