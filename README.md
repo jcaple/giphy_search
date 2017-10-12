@@ -19,7 +19,7 @@ Testing on Firefox 40.15063.0.0 revealed many display discrepancies not encounte
 
 1.  Clone the repository
 2.  **Obtain your own giphy.com API Key**
-3.  Enter API key in approprate place in frontend.js
+3.  Enter API key in appropriate place in frontend.js
 4.  npm run start
 5.  Using Google Chrome (or IE Edge) navigate to http://localhost:8000
 6.  Enter any email address/password combination
