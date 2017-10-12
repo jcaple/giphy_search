@@ -3,7 +3,7 @@
 ## Project Description
 
 This is a NodeJS/Express/Vue/Bootstrap web application that allows the user to search giphy.com from a simple
-we interface and share resulting images on their Facebook feed.
+web interface and share resulting images on their Facebook feed.
 
 This project is just for fun and to do some interesting things with the NodeJS/Vue/Express platform and Docker.
 
